@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'                                // ✅ Makes it globally available
+  providedIn: 'root'
 })
 export class NasaDataService {
-  private http = inject(HttpClient);                // ✅ Angular 19 inject pattern
+  private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:5016/api/nasadata/land-surface-temperature';  // Adjust this if needed
+  private apiUrl = 'http://localhost:5016/api/nasadata/land-surface-temperature';  // ✅ Adjust if needed
 
   getLandSurfaceTemperature(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
