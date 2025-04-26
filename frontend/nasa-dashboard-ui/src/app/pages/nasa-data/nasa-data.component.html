@@ -1,1 +1,12 @@
-<h2>This is the NASA Data page!</h2>
+<h2>NASA Land Surface Temperature Data</h2>
+
+<div *ngIf="loading">Loading data...</div>
+<div *ngIf="error" style="color: red;">{{ error }}</div>
+
+<ul *ngIf="!loading && !error && data.length > 0">
+  <li *ngFor="let item of data">
+    Date: {{ item.date }} — Temperature: {{ item.temperatureC }}°C
+  </li>
+</ul>
+
+<p *ngIf="!loading && !error && data.length === 0">No data found.</p>

@@ -1,7 +1,6 @@
 using Microsoft.OpenApi.Models;
 using nasa_dashboard_api.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,10 +11,19 @@ builder.Services.AddSwaggerGen(options =>
 });
 builder.Services.AddHttpClient<NasaDataService>();
 
-
-
-// Add controller services
+// ✅ Add Controllers
 builder.Services.AddControllers();
+
+// ✅ Add CORS Policy Here:
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")   // Your Angular frontend origin
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -31,9 +39,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors();                                        // ✅ Enable CORS here!
+
 app.UseAuthorization();
 
-// Tell the app to use controller routes!
-app.MapControllers();
+app.MapControllers();                                 // ✅ Route your controllers
 
 app.Run();
