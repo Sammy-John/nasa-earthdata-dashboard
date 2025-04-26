@@ -3,10 +3,17 @@
 <div *ngIf="loading">Loading data...</div>
 <div *ngIf="error" style="color: red;">{{ error }}</div>
 
-<ul *ngIf="!loading && !error && data.length > 0">
-  <li *ngFor="let item of data">
-    Date: {{ item.date }} — Temperature: {{ item.temperatureC }}°C
-  </li>
-</ul>
+<div *ngIf="!loading && !error && data.length > 0">
+  <canvas baseChart
+          [data]="chartData"
+          [type]="chartType">
+  </canvas>
+
+  <ul>
+    <li *ngFor="let item of data">
+      Date: {{ item.date }} — Temperature: {{ item.temperatureC }}°C
+    </li>
+  </ul>
+</div>
 
 <p *ngIf="!loading && !error && data.length === 0">No data found.</p>
