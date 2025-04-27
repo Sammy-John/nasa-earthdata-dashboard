@@ -11,7 +11,14 @@ export class NasaDataService {
 
   private apiUrl = 'http://localhost:5016/api/nasadata/land-surface-temperature';  // ✅ Adjust if needed
 
-  getLandSurfaceTemperature(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getLandSurfaceTemperature(
+    latitude: number,
+    longitude: number,
+    start: string,
+    end: string
+  ): Observable<any> {
+    const url = `${this.apiUrl}?latitude=${latitude}&longitude=${longitude}&start=${start}&end=${end}`;
+    return this.http.get<any>(url);
   }
+  
 }

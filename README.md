@@ -28,6 +28,51 @@ nasa-earthdata-dashboard/
 └── .gitignore        # Ignore config for VS, Node, SvelteKit
 ```
 
+## 💻 Frontend Setup 
+
+### ✅ Prerequisites:
+- Node.js + npm
+- Angular CLI (optional global install):
+```bash
+npm install -g @angular/cli
+```
+
+### 📦 Install Dependencies:
+
+```bash
+cd frontend/nasa-dashboard-ui
+npm install
+```
+
+### 🟢 Run Dev Server:
+```bash
+npm start
+```
+
+Frontend will run at :
+```bash
+http://localhost:4200/
+```
+## 🚀 Backend Setup (.NET Core API)
+### ✅ Run the Backend:
+
+```bash
+cd backend/nasa-dashboard-api
+dotnet run
+```
+API available at:
+```bash
+http://localhost:5016/swagger
+```
+
+### 📌 Key Endpoint:
+
+```bash
+GET /api/nasadata/land-surface-temperature
+```
+
+Returns temperature for hardcoded co-ordinates (Wellington, New Zealand)
+
 ## 📝 License
 
 This project is licensed under the **Apache 2.0 License**.
