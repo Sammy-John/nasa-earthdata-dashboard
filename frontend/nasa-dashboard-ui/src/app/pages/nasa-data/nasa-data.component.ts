@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NasaDataService } from '../../services/nasa-data.service';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule } from '@angular/forms';  // ✅ Keep FormsModule for ngModel binding
 
 interface TemperatureRecord {
   date: string;
@@ -14,23 +14,22 @@ interface TemperatureRecord {
 @Component({
   selector: 'app-nasa-data',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, NgChartsModule],  // ✅ Include FormsModule here!
+  imports: [CommonModule, RouterModule, FormsModule, NgChartsModule],  // ✅ Final resolved imports
   templateUrl: './nasa-data.component.html',
   styleUrls: ['./nasa-data.component.scss']
 })
-
 export class NasaDataComponent implements OnInit {
   data: TemperatureRecord[] = [];
   loading = true;
   error = '';
 
-  // Query Control Properties:
-  latitude: number = -41.2865;          // Default Wellington
+  // ✅ Query Control Properties:
+  latitude: number = -41.2865;          // Default: Wellington, NZ
   longitude: number = 174.7762;
   startDate: string = '2023-01-01';
   endDate: string = '2023-01-05';
 
-  // Chart Configuration:
+  // ✅ Chart Configuration:
   public chartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
     datasets: [
@@ -51,11 +50,11 @@ export class NasaDataComponent implements OnInit {
   constructor(private nasaService: NasaDataService) {}
 
   ngOnInit(): void {
-    this.fetchData();                         // ✅ Initial fetch with defaults
+    this.fetchData();                         // ✅ Initial fetch on component load
   }
 
   onSubmit(): void {
-    this.fetchData();                         // ✅ Called when user submits the form
+    this.fetchData();                         // ✅ Trigger data fetch on form submit
   }
 
   private fetchData(): void {
@@ -88,3 +87,5 @@ export class NasaDataComponent implements OnInit {
     this.chartData.datasets[0].data = this.data.map(item => item.temperatureC);
   }
 }
+
+
