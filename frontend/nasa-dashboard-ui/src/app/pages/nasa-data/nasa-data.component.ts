@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NasaDataService } from '../../services/nasa-data.service';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
+import { FormsModule } from '@angular/forms';  // ✅ Keep FormsModule for ngModel binding
 
 interface TemperatureRecord {
   date: string;
@@ -13,7 +14,7 @@ interface TemperatureRecord {
 @Component({
   selector: 'app-nasa-data',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgChartsModule],          // ✅ Add NgChartsModule here!
+  imports: [CommonModule, RouterModule, FormsModule, NgChartsModule],  // ✅ Final resolved imports
   templateUrl: './nasa-data.component.html',
   styleUrls: ['./nasa-data.component.scss']
 })
@@ -22,7 +23,13 @@ export class NasaDataComponent implements OnInit {
   loading = true;
   error = '';
 
-  // ✅ Chart properties:
+  // ✅ Query Control Properties:
+  latitude: number = -41.2865;          // Default: Wellington, NZ
+  longitude: number = 174.7762;
+  startDate: string = '2023-01-01';
+  endDate: string = '2023-01-05';
+
+  // ✅ Chart Configuration:
   public chartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
     datasets: [
@@ -43,7 +50,24 @@ export class NasaDataComponent implements OnInit {
   constructor(private nasaService: NasaDataService) {}
 
   ngOnInit(): void {
-    this.nasaService.getLandSurfaceTemperature().subscribe({
+    this.fetchData();                         // ✅ Initial fetch on component load
+  }
+
+  onSubmit(): void {
+    this.fetchData();                         // ✅ Trigger data fetch on form submit
+  }
+
+  private fetchData(): void {
+    this.loading = true;
+    this.error = '';
+    this.data = [];
+
+    this.nasaService.getLandSurfaceTemperature(
+      this.latitude,
+      this.longitude,
+      this.startDate,
+      this.endDate
+    ).subscribe({
       next: (response) => {
         console.log('API response:', response);
         this.data = Array.isArray(response) ? response : [];
@@ -63,4 +87,5 @@ export class NasaDataComponent implements OnInit {
     this.chartData.datasets[0].data = this.data.map(item => item.temperatureC);
   }
 }
+
 
