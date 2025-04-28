@@ -14,10 +14,10 @@ namespace nasa_dashboard_api.Services
             _httpClient = httpClient;
         }
 
-        public async Task<object> GetLandSurfaceTemperatureAsync(double latitude, double longitude, string start, string end)
+        public async Task<object> GetNasaDataAsync(double latitude, double longitude, string start, string end, string parameter)
         {
             var url = $"https://power.larc.nasa.gov/api/temporal/daily/point" +
-                    $"?parameters=T2M&community=AG&longitude={longitude}&latitude={latitude}" +
+                    $"?parameters={parameter}&community=AG&longitude={longitude}&latitude={latitude}" +
                     $"&start={start}&end={end}&format=JSON";
 
             var response = await _httpClient.GetAsync(url);
@@ -27,27 +27,20 @@ namespace nasa_dashboard_api.Services
             using var jsonDoc = JsonDocument.Parse(jsonString);
             var root = jsonDoc.RootElement;
 
-            // ✅ Check messages first:
-            if (root.TryGetProperty("messages", out var messages) && messages.GetArrayLength() > 0)
-            {
-                return new { error = "NASA API returned messages: " + messages[0].GetString() };
-            }
-
-            // ✅ Safely check if T2M exists:
             if (!root.TryGetProperty("properties", out var properties) ||
-                !properties.TryGetProperty("parameter", out var parameter) ||
-                !parameter.TryGetProperty("T2M", out var temperatures))
+                !properties.TryGetProperty("parameter", out var paramElement) ||
+                !paramElement.TryGetProperty(parameter, out var dataPoints))
             {
-                return new { error = "No temperature data found for the provided range." };
+                return new { error = "No data found for the selected parameter." };
             }
 
             var result = new List<object>();
-            foreach (var day in temperatures.EnumerateObject())
+            foreach (var day in dataPoints.EnumerateObject())
             {
                 result.Add(new
                 {
                     date = day.Name,
-                    temperatureC = day.Value.GetDouble()
+                    value = day.Value.GetDouble()
                 });
             }
 
