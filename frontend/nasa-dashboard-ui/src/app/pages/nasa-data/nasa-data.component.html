@@ -1,14 +1,22 @@
-<h2>NASA Land Surface Temperature Data</h2>
+<h2>NASA EarthData: {{ dataLabel }}</h2>
 
 <form (ngSubmit)="onSubmit()" #queryForm="ngForm" class="query-form">
   <label>
-    Latitude:
-    <input type="number" [(ngModel)]="latitude" name="latitude" required />
+    Location:
+    <select [(ngModel)]="location" name="location" required>
+      <option value="Wellington">Wellington</option>
+      <option value="Auckland">Auckland</option>
+      <option value="Christchurch">Christchurch</option>
+      <option value="Dunedin">Dunedin</option>
+      <option value="Hamilton">Hamilton</option>
+    </select>
   </label>
 
   <label>
-    Longitude:
-    <input type="number" [(ngModel)]="longitude" name="longitude" required />
+    Data Type:
+    <select [(ngModel)]="dataType" name="dataType" required>
+      <option value="T2M">Temperature (°C)</option>
+    </select>
   </label>
 
   <label>
@@ -28,15 +36,11 @@
 <div *ngIf="error" style="color: red;">{{ error }}</div>
 
 <div *ngIf="!loading && !error && data.length > 0">
-  <!-- ✅ Final merged chart section -->
-  <canvas baseChart
-          [data]="chartData"
-          [type]="chartType">
-  </canvas>
+  <canvas baseChart [data]="chartData" [type]="chartType"></canvas>
 
   <ul>
     <li *ngFor="let item of data">
-      Date: {{ item.date }} — Temperature: {{ item.temperatureC }}°C
+      Date: {{ item.date }} — {{ dataLabel }}: {{ item.value }}
     </li>
   </ul>
 </div>

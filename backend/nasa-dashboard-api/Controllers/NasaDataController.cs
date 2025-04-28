@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using nasa_dashboard_api.Services;
+using nasa_dashboard_api.Models;
 
 namespace nasa_dashboard_api.Controllers
 {
@@ -20,27 +21,38 @@ namespace nasa_dashboard_api.Controllers
             return Ok(new { status = "API is up and running!" });
         }
 
-        // ✅ Updated endpoint with query parameters:
-        [HttpGet("land-surface-temperature")]
-        public async Task<IActionResult> GetLandSurfaceTemperature(
-            [FromQuery] double latitude,
-            [FromQuery] double longitude,
-            [FromQuery] string start,
-            [FromQuery] string end)
+        // ✅ Endpoint to provide list of available locations:
+        [HttpGet("locations")]
+        public IActionResult GetAvailableLocations()
         {
-            // ✅ Validation for required date fields
-            if (string.IsNullOrEmpty(start) || string.IsNullOrEmpty(end))
+            var locations = NasaLocations.Locations.Keys;
+            return Ok(locations);
+        }
+
+        // ✅ Generic endpoint to get data (Temperature or Vegetation Index):
+        [HttpGet("nasa-data")]
+        public async Task<IActionResult> GetNasaData(
+            [FromQuery] string location,
+            [FromQuery] string start,
+            [FromQuery] string end,
+            [FromQuery] string parameter)
+        {
+            if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(start) || string.IsNullOrEmpty(end) || string.IsNullOrEmpty(parameter))
             {
-                return BadRequest(new { error = "Start and End dates are required." });
+                return BadRequest(new { error = "Location, start date, end date, and parameter are required." });
             }
 
-            // ✅ Reformat dates from 'YYYY-MM-DD' to 'YYYYMMDD' for NASA API
+            if (!NasaLocations.Locations.TryGetValue(location, out var coords))
+            {
+                return BadRequest(new { error = "Invalid location specified." });
+            }
+
             var startFormatted = start.Replace("-", "");
             var endFormatted = end.Replace("-", "");
 
             try
             {
-                var result = await _nasaDataService.GetLandSurfaceTemperatureAsync(latitude, longitude, startFormatted, endFormatted);
+                var result = await _nasaDataService.GetNasaDataAsync(coords.Latitude, coords.Longitude, startFormatted, endFormatted, parameter);
                 return Ok(result);
             }
             catch (Exception ex)
