@@ -1,0 +1,241 @@
+/* =====================
+   Hero Section
+===================== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 80vh;
+  padding: var(--space-xl) var(--space-md);
+  background: linear-gradient(rgba(11, 15, 26, 0.7), rgba(11, 15, 26, 0.7)),
+    url('/assets/starfield.jpg') center/cover no-repeat;
+  color: var(--color-text-primary);
+}
+
+.hero-content {
+  flex: 1;
+  padding: var(--space-lg);
+  text-align: left;
+  z-index: 2;
+
+  h2 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-heading);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  p {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-subheading);
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-secondary);
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-subheading);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 10px var(--color-accent);
+
+    &:hover {
+      background-color: var(--color-accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px var(--color-accent);
+    }
+  }
+}
+
+.hero-image {
+  flex: 1;
+  padding: var(--space-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* =====================
+   Home Content Layout
+===================== */
+.home-content {
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.home-layout {
+  display: flex;
+  gap: var(--space-xl);
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* LEFT COLUMN */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  flex: 1;
+
+  .tech-row {
+    display: flex;
+    gap: var(--space-md);
+
+    .tech-card {
+      flex: 1;
+    }
+  }
+
+  .tech-summary-card {
+    border: 1px dashed var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary);
+    font-weight: bold;
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* CENTER COLUMN – PURPOSE BLOCK */
+.purpose-block {
+  flex: 1;
+  max-width: 400px;
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent-light);
+  text-align: center;
+
+  h3 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-heading);
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  p {
+    font-size: var(--font-size-subheading);
+    color: var(--color-text-secondary);
+  }
+}
+
+/* Right Column (Center to height of layout) */
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ Vertical centering */
+  align-items: center;
+  gap: var(--space-md);
+  height: 100%;     
+
+  .languages-heading {
+    font-size: var(--font-size-subheading);
+    font-weight: bold;
+    color: var(--color-primary);       /* ✅ Match other cards */
+    border: 1px dashed var(--color-primary);  /* ✅ Full border */
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius);
+    background-color: var(--color-surface);  /* ✅ Card-style bg */
+    width: 100%;
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    gap: var(--space-md);
+  }
+}
+
+
+/* =====================
+   Shared Tech Card Style
+===================== */
+.tech-card {
+  background-color: var(--color-surface);
+  padding: var(--space-md);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  text-align: center;
+
+  svg {
+    width: 48px;
+    height: 48px;
+    fill: var(--color-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  h4 {
+    font-family: var(--font-family-heading);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  p {
+    font-size: var(--font-size-small);
+    color: var(--color-text-secondary);
+  }
+}
+
+/* =====================
+   Project Scope Section
+===================== */
+.scope-section {
+  margin-top: var(--space-xl);
+
+  h3 {
+    font-size: var(--font-size-heading);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .scope-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    justify-content: center;
+  }
+
+  .scope-card {
+    background-color: var(--color-surface);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    flex: 1 1 300px;
+    max-width: 350px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+
+    h4 {
+      font-family: var(--font-family-heading);
+      margin-bottom: var(--space-sm);
+      color: var(--color-text-primary);
+    }
+
+    p {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-small);
+    }
+  }
+}

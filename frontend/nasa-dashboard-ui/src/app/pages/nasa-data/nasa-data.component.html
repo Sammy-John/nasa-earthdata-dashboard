@@ -4,11 +4,7 @@
   <label>
     Location:
     <select [(ngModel)]="location" name="location" required>
-      <option value="Wellington">Wellington</option>
-      <option value="Auckland">Auckland</option>
-      <option value="Christchurch">Christchurch</option>
-      <option value="Dunedin">Dunedin</option>
-      <option value="Hamilton">Hamilton</option>
+      <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
     </select>
   </label>
 

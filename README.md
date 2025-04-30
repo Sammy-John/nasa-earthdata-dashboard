@@ -3,7 +3,6 @@
 A minimal, responsive dashboard that visualizes **NASA EarthData** for **New Zealand**, focusing on:
 
 - 🌡️ **Land Surface Temperature (LST)**
-- 🌿 **Vegetation Index (NDVI)**
 
 This project pulls data from **NASA Open APIs** and presents it through interactive charts and maps for quick insights.
 

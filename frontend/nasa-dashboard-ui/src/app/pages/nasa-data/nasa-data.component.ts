@@ -28,8 +28,8 @@ export class NasaDataComponent implements OnInit {
   location: string = '';
   startDate: string = '2023-01-01';
   endDate: string = '2023-01-05';
-  dataType: string = 'T2M';  // T2M = Temperature, NDVI = Vegetation Index
-
+  dataType: string = 'T2M';  
+  
   // Chart configuration:
   public chartData: ChartConfiguration<'line'>['data'] = {
     labels: [],

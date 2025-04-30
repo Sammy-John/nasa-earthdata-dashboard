@@ -1,8 +1,15 @@
-<h1>NASA EarthData Dashboard</h1>
+<header class="site-header">
+  <div class="logo-title">
+    <img src="assets/nasa-logo-png-file-nasa-logo-svg-1237.png" alt="NASA Logo" class="nasa-logo" />
+    <h1 class="site-title">NASA EarthData Dashboard</h1>
+  </div>
 
-<nav>
-  <a routerLink="/home" routerLinkActive="active">Home</a>
-  <a routerLink="/nasa-data" routerLinkActive="active">NASA Data</a>
-</nav>
+  <nav class="site-nav">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/nasa-data" routerLinkActive="active">NASA Data</a>
+  </nav>
+</header>
 
-<router-outlet></router-outlet>
+<main class="site-main">
+  <router-outlet></router-outlet>
+</main>
