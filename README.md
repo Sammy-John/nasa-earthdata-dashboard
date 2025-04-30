@@ -8,23 +8,30 @@ This project pulls data from **NASA Open APIs** and presents it through interact
 
 ## 🚀 Purpose
 
-The goal is to create a simple MVP (Minimum Viable Product) in **4 days** that demonstrates:
-
 - Backend API service (built with **.NET Core Web API**)
-- Frontend dashboard (built with **SvelteKit**)
-- Visualization of LST and NDVI data over New Zealand regions
+- Frontend dashboard (built with **Angular** and **SCSS**)
+- Visualization of LST data over New Zealand regions
+- Pagination and responsiveness for data-heavy output
+
+📸 Features
+
+- Interactive query form for location/date selection
+- Paginated results for large datasets
+- Responsive layout with themed UI
+- NASA + space-inspired design system
+- Easy to extend to other parameters in the future
 
 ## 📂 Project Structure
 
 ```
 nasa-earthdata-dashboard/
 ├── backend/          # .NET Core Web API
-├── frontend/         # SvelteKit Frontend
+├── frontend/         # Angular Frontend
 ├── docs/             # Scope, Requirements, and Documentation
 ├── scripts/          # Helper or setup scripts
 ├── README.md         # This file
 ├── LICENSE           # Apache 2.0 License
-└── .gitignore        # Ignore config for VS, Node, SvelteKit
+└── .gitignore        # Ignore config for VS, Node, Angular
 ```
 
 ## 💻 Frontend Setup 
@@ -70,7 +77,7 @@ http://localhost:5016/swagger
 GET /api/nasadata/land-surface-temperature
 ```
 
-Returns temperature for hardcoded co-ordinates (Wellington, New Zealand)
+Returns temperature for different New Zealand regions.
 
 ## 📝 License
 
@@ -78,4 +85,3 @@ This project is licensed under the **Apache 2.0 License**.
 
 ---
 
-> MVP Focus: Keep it simple. Prioritize core functionality and data visualization over extra features.
