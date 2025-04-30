@@ -26,8 +26,8 @@ export class NasaDataComponent implements OnInit {
 
   // ✅ Form controls
   location: string = '';
-  startDate: string = '2023-01-01';
-  endDate: string = '2023-01-05';
+  startDate: string = '2025-01-01';
+  endDate: string = '2025-01-05';
   dataType: string = 'T2M';
 
   // ✅ Chart configuration
