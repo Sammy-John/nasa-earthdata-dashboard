@@ -45,4 +45,7 @@ app.UseAuthorization();
 
 app.MapControllers();                                 // ✅ Route your controllers
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5016";
+app.Urls.Add($"http://*:{port}");
 app.Run();
+
