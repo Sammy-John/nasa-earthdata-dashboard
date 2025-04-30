@@ -20,17 +20,17 @@ interface TemperatureRecord {
 })
 export class NasaDataComponent implements OnInit {
   data: TemperatureRecord[] = [];
-  locations: string[] = [];                // ✅ Add this
+  locations: string[] = [];
   loading = true;
   error = '';
 
-  // Form controls:
+  // ✅ Form controls
   location: string = '';
   startDate: string = '2023-01-01';
   endDate: string = '2023-01-05';
-  dataType: string = 'T2M';  
-  
-  // Chart configuration:
+  dataType: string = 'T2M';
+
+  // ✅ Chart configuration
   public chartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
     datasets: [
@@ -47,18 +47,45 @@ export class NasaDataComponent implements OnInit {
   };
   public chartType: ChartType = 'line';
 
+  // ✅ Pagination state
+  itemsPerPage = 20;
+  currentPage = 1;
+
   constructor(private nasaService: NasaDataService) {}
 
   ngOnInit(): void {
-    this.loadLocations();                 // ✅ Pull locations on init
+    this.loadLocations();
   }
 
   get dataLabel(): string {
     return this.dataType === 'T2M' ? 'Temperature (°C)' : 'Vegetation Index (NDVI)';
   }
 
+  // ✅ Paginated view of current results
+  get totalPages(): number {
+    return Math.ceil(this.data.length / this.itemsPerPage);
+  }
+
+  get paginatedData(): TemperatureRecord[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.data.slice(start, start + this.itemsPerPage);
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
   onSubmit(): void {
     if (this.location) {
+      this.currentPage = 1; // ✅ reset to page 1
       this.fetchData();
     } else {
       this.error = 'Please select a location.';
@@ -67,17 +94,17 @@ export class NasaDataComponent implements OnInit {
 
   private loadLocations(): void {
     this.nasaService.getLocations().subscribe({
-      next: (response: string[]) => {   // ✅ Added string[] type
+      next: (response: string[]) => {
         this.locations = response;
         this.location = this.locations[0] || '';
         if (this.location) {
           this.fetchData();
         }
       },
-      error: (err: any) => {           // ✅ Added any type to error
+      error: () => {
         this.error = 'Error fetching available locations.';
         this.loading = false;
-      }      
+      }
     });
   }
 
@@ -93,7 +120,7 @@ export class NasaDataComponent implements OnInit {
           this.updateChart();
           this.loading = false;
         },
-        error: (err) => {
+        error: () => {
           this.error = 'Error fetching data from the API.';
           this.loading = false;
         }
