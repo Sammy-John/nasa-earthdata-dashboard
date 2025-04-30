@@ -6,7 +6,8 @@ A minimal, responsive dashboard that visualizes **NASA EarthData** for **New Zea
 
 This project pulls data from **NASA Open APIs** and presents it through interactive charts and maps for quick insights.
 
-Check [Demo]("https://sammy-john.github.io/nasa-earthdata-dashboard/")
+Check [Demo](https://sammy-john.github.io/nasa-earthdata-dashboard/)
+
 
 ## 🚀 Purpose
 
