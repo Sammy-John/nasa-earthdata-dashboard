@@ -1,0 +1,58 @@
+/* ===============================
+    App Component Styles
+   =============================== */
+
+   .site-header {
+    background-color: var(--color-surface);
+    padding: var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .logo-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  
+  .nasa-logo {
+    width: 48px;
+    height: auto;
+    display: block;              /* important: no descender gap */
+  }
+  
+  .site-title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-heading);
+    color: var(--color-text-primary);
+    line-height: 1;
+    margin: 0;
+    position: relative;
+    top: 2px;                    /* optional, adjust to perfection */
+  }
+  
+  
+  .site-nav {
+    display: flex;
+    gap: var(--space-lg);
+  }
+  
+  .site-nav a {
+    font-size: var(--font-size-small);
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  
+  .site-nav a:hover,
+  .site-nav a.active {
+    color: var(--color-accent);
+  }
+  
+  .site-main {
+    padding: var(--space-lg);
+  }
+  

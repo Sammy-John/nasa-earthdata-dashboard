@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===============================
+    Global Styles - styles.scss
+   =============================== */
+
+/* 1. CSS Reset (Minimal) */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Root Variables */
+:root {
+  /* 🎨 Color Scheme - Inspired by NASA and Space Themes */
+  --color-background: #0b0f1a;         /* Deep space blue */
+  --color-surface: #161c2b;             /* Card / nav background */
+
+  --color-primary: #4ea8de;             /* NASA vibrant blue */
+  --color-secondary: #b9d6f2;           /* Soft blue, replaces grey */
+  --color-accent: #ff7043;              /* NASA warm orange */
+  --color-accent-light: #ff8a65;
+  --color-success: #00d2c7;             /* Cool space teal */
+
+  --color-text-primary: #e0e6ed;        /* Main body text */
+  --color-text-secondary: #b9d6f2;      /* Softer, secondary text */
+
+  /* 🖋️ Typography */
+  --font-family-heading: 'Orbitron', 'Arial', sans-serif;
+  --font-family-body: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  
+  --font-size-base: 16px;
+  --font-size-heading: 2rem;
+  --font-size-subheading: 1.5rem;
+  --font-size-small: 0.875rem;
+
+  /* 📏 Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+
+  /* 🖼️ Border Radius */
+  --border-radius: 8px;
+}
+
+/* 3. Base HTML + Body */
+html, body {
+  height: 100%;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+/* 4. Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+}
+
+p, span, li, a, input, select, button {
+  font-family: var(--font-family-body);
+}
+
+/* 5. Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 6. Simple Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-md);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* 7. Future SCSS Module Imports (Optional) */
+/*
+@import './app/components/buttons';
+@import './app/components/forms';
+@import './app/components/layout';
+*/

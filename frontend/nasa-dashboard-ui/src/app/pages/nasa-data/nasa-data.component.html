@@ -1,48 +1,65 @@
-<h2>NASA EarthData: {{ dataLabel }}</h2>
+<section class="data-intro">
+  <h2>NASA EarthData</h2>
+  <p>View land surface temperature trends across New Zealand regions using NASA POWER APIs.</p>
+</section>
 
 <form (ngSubmit)="onSubmit()" #queryForm="ngForm" class="query-form">
-  <label>
-    Location:
-    <select [(ngModel)]="location" name="location" required>
-      <option value="Wellington">Wellington</option>
-      <option value="Auckland">Auckland</option>
-      <option value="Christchurch">Christchurch</option>
-      <option value="Dunedin">Dunedin</option>
-      <option value="Hamilton">Hamilton</option>
-    </select>
-  </label>
+  <fieldset>
+    <legend>Query Parameters</legend>
 
-  <label>
-    Data Type:
-    <select [(ngModel)]="dataType" name="dataType" required>
-      <option value="T2M">Temperature (°C)</option>
-    </select>
-  </label>
+    <label>
+      Location:
+      <select [(ngModel)]="location" name="location" required>
+        <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
+      </select>
+    </label>
 
-  <label>
-    Start Date:
-    <input type="date" [(ngModel)]="startDate" name="startDate" required />
-  </label>
+    <label>
+      Data Type:
+      <select [(ngModel)]="dataType" name="dataType" required>
+        <option value="T2M">Temperature (°C)</option>
+      </select>
+    </label>
 
-  <label>
-    End Date:
-    <input type="date" [(ngModel)]="endDate" name="endDate" required />
-  </label>
+    <label>
+      Start Date:
+      <input type="date" [(ngModel)]="startDate" name="startDate" required />
+    </label>
+
+    <label>
+      End Date:
+      <input type="date" [(ngModel)]="endDate" name="endDate" required />
+    </label>
+  </fieldset>
 
   <button type="submit" [disabled]="queryForm.invalid">Fetch Data</button>
 </form>
 
-<div *ngIf="loading">Loading data...</div>
-<div *ngIf="error" style="color: red;">{{ error }}</div>
+<!-- Status Indicators -->
+<div *ngIf="loading" class="status loading">🔄 Loading data...</div>
+<div *ngIf="error" class="status error">⚠️ {{ error }}</div>
 
-<div *ngIf="!loading && !error && data.length > 0">
+<!-- Results Section -->
+<section *ngIf="!loading && !error && data.length > 0" class="data-results">
+  <p class="summary">
+    Showing {{ data.length }} days of data for <strong>{{ location }}</strong> —
+    {{ dataLabel }} from {{ startDate }} to {{ endDate }}.
+  </p>
+
   <canvas baseChart [data]="chartData" [type]="chartType"></canvas>
 
-  <ul>
-    <li *ngFor="let item of data">
-      Date: {{ item.date }} — {{ dataLabel }}: {{ item.value }}
+  <ul class="data-list">
+    <li *ngFor="let item of paginatedData">
+      {{ item.date }} — {{ dataLabel }}: {{ item.value }}
     </li>
   </ul>
-</div>
+  
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>  
+</section>
 
-<p *ngIf="!loading && !error && data.length === 0">No data found.</p>
+<!-- No data fallback -->
+<p *ngIf="!loading && !error && data.length === 0" class="status empty">No data found for this period.</p>

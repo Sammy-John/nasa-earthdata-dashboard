@@ -1,1 +1,105 @@
-<h2>Welcome to the Home Page!</h2>
+<section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to the NASA EarthData Dashboard</h1>
+      <p>Explore real-world land surface temperature data across New Zealand regions, powered by NASA's Open APIs.</p>
+      <a routerLink="/nasa-data" class="cta-button">Explore Data</a>
+    </div>
+    <div class="hero-image">
+      <img src="assets/nz_from_space.jpg" alt="Earth from Space" />
+    </div>
+</section>
+  
+  
+<section class="home-content">
+  <div class="home-layout">
+
+        <!-- LEFT COLUMN -->
+        <div class="left-column">
+          <div class="tech-row">
+            <div class="tech-card">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path [attr.d]="icons.angular.icon.path"></path>
+              </svg>
+              <h4>{{ icons.angular.label }}</h4>
+              <p>{{ icons.angular.description }}</p>
+            </div>
+    
+            <div class="tech-card">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path [attr.d]="icons.dotnet.icon.path"></path>
+              </svg>
+              <h4>{{ icons.dotnet.label }}</h4>
+              <p>{{ icons.dotnet.description }}</p>
+            </div>
+          </div>
+    
+          <div class="tech-row">
+            <div class="tech-summary-card">
+              <p>Technologies Used</p>
+            </div>
+    
+            <div class="tech-card">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path [attr.d]="icons.chartjs.icon.path"></path>
+              </svg>
+              <h4>{{ icons.chartjs.label }}</h4>
+              <p>{{ icons.chartjs.description }}</p>
+            </div>
+          </div>
+        </div>
+    
+
+    <!-- CENTER PURPOSE BLOCK -->
+    <div class="purpose-block">
+      <h3>Purpose</h3>
+      <p>This dashboard demonstrates a project focusing on building a responsive web application that connects
+        to NASA's POWER APIs to retrieve and visualize land surface temperature data for New Zealand cities.</p>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-column">
+      <div class="languages-heading">Languages</div>
+      <div class="row">
+        <div class="tech-card">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path [attr.d]="icons.typescript.icon.path"></path>
+          </svg>
+          <h4>{{ icons.typescript.label }}</h4>
+          <p>{{ icons.typescript.description }}</p>
+        </div>
+
+        <div class="tech-card">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path [attr.d]="icons.csharp.icon.path"></path>
+          </svg>
+          <h4>{{ icons.csharp.label }}</h4>
+          <p>{{ icons.csharp.description }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCOPE SECTION BELOW EVERYTHING -->
+  <div class="scope-section">
+    <h3>Project Scope</h3>
+    <div class="scope-items">
+      <div class="scope-card">
+        <h4>🎯 Focused Data</h4>
+        <p>Visualizes Land Surface Temperature (LST) for key urban regions across New Zealand using real-time NASA data.</p>
+      </div>
+
+      <div class="scope-card">
+        <h4>🔧 Expandable Framework</h4>
+        <p>Built to support future additions like new parameters (e.g., solar radiation) and customizable location sets.</p>
+      </div>
+
+      <div class="scope-card">
+        <h4>💡 MVP Strategy</h4>
+        <p>Prioritizes API integration, clean user experience, and responsive UI over advanced analytics or data overlays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  

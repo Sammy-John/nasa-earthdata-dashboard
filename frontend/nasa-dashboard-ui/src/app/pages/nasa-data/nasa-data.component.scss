@@ -1,0 +1,176 @@
+/* ============================
+   NASA Data Page Styles
+============================ */
+
+.data-intro {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  
+    h2 {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-heading);
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+  
+    p {
+      font-size: var(--font-size-subheading);
+      color: var(--color-text-secondary);
+    }
+  }
+  
+  /* Query Form */
+  .query-form {
+    background-color: var(--color-surface);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    margin-bottom: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  
+    fieldset {
+      border: 1px solid var(--color-primary);
+      border-radius: var(--border-radius);
+      padding: var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+  
+      legend {
+        font-family: var(--font-family-heading);
+        color: var(--color-accent);
+        padding: 0 var(--space-sm);
+        font-size: 1.1rem;
+      }
+  
+      label {
+        flex: 1 1 200px;
+        display: flex;
+        flex-direction: column;
+        font-size: var(--font-size-small);
+        color: var(--color-text-secondary);
+      }
+  
+      select,
+      input[type="date"] {
+        padding: var(--space-sm);
+        border: 1px solid var(--color-primary);
+        border-radius: var(--border-radius);
+        background-color: var(--color-background);
+        color: var(--color-text-primary);
+        margin-top: var(--space-xs);
+      }
+    }
+  
+    button[type="submit"] {
+      align-self: flex-end;
+      padding: var(--space-sm) var(--space-lg);
+      font-size: var(--font-size-subheading);
+      border: none;
+      border-radius: var(--border-radius);
+      background-color: var(--color-accent);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+  
+      &:hover {
+        background-color: var(--color-accent-light);
+      }
+  
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  /* Status Messages */
+  .status {
+    font-size: var(--font-size-small);
+    padding: var(--space-sm);
+    text-align: center;
+  
+    &.loading {
+      color: var(--color-primary);
+    }
+  
+    &.error {
+      color: red;
+    }
+  
+    &.empty {
+      color: var(--color-text-secondary);
+    }
+  }
+  
+  /* Data Results */
+  .data-results {
+    background-color: var(--color-surface);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  
+    .summary {
+      font-size: var(--font-size-small);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-md);
+    }
+  
+    canvas {
+      margin-bottom: var(--space-md);
+    }
+  
+    .data-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-sm);
+        list-style: none;
+        padding: 0;
+      
+        li {
+          padding: var(--space-xs);
+          background-color: var(--color-background);
+          border-radius: var(--border-radius);
+          color: var(--color-text-primary);
+          font-size: var(--font-size-small);
+          box-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+        }
+      }      
+  }
+  
+  /* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  
+    button {
+      padding: var(--space-xs) var(--space-md);
+      font-size: var(--font-size-small);
+      background-color: var(--color-primary);
+      border: none;
+      border-radius: var(--border-radius);
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s ease;
+  
+      &:hover:not(:disabled) {
+        background-color: var(--color-accent);
+      }
+  
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  
+    span {
+      font-size: var(--font-size-small);
+      color: var(--color-text-secondary);
+    }
+  }
+  
